@@ -1,0 +1,58 @@
+:set number
+:set relativenumber
+:set autoindent
+:set tabstop=2
+:set shiftwidth=2
+:set smarttab
+:set softtabstop=2
+:set si et
+:set mouse=a
+:imap jj <Esc>
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
+Plug 'https://github.com/preservim/nerdtree' " NerdTree
+Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
+Plug 'https://github.com/ap/vim-css-color' " CSS Color Preview
+Plug 'https://github.com/vim-airline/vim-airline' " Status bar
+Plug 'https://github.com/rafi/awesome-vim-colorschemes' " Retro Scheme
+Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
+Plug 'https://github.com/tc50cal/vim-terminal' " Vim Terminal
+Plug 'https://github.com/terryma/vim-multiple-cursors' " CTRL + N for multiple cursors
+Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
+Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
+Plug 'jiangmiao/auto-pairs' " Auto pairing of brackets
+Plug 'gruvbox-community/gruvbox' " Gruvbox Theme
+
+call  plug#end()
+
+
+nmap <F8> :TagbarToggle<CR>
+
+:set completeopt-=preview " For No Previews
+
+:colorscheme PaperColor
+
+inoremap <C-b> <Esc>:NERDTreeToggle<CR>
+nnoremap <C-b> <Esc>:NERDTreeToggle<CR>
+
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+
+set termguicolors
+colo OceanicNexT
